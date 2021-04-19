@@ -1,0 +1,61 @@
+a{
+    font-weight: bold;
+    color: white !important;
+    display: inline-block !important;
+    width: 130px;
+    font-size: smaller !important;
+}
+
+a.hover{
+    color: red !important;
+}
+
+.btn-login{
+    background-color: transparent;
+    font-size: smaller !important;
+    margin-left:30%;
+}
+
+.btn-li{
+    background-color: transparent;
+    display: inline-block !important;
+    font-size: smaller !important;
+    border-color: transparent !important;
+
+}
+
+
+.navbar-item{
+    height: 50px;
+    align-content: center;
+    display: inline-block;
+    margin-top: 25%;
+    // width: 50px;
+    padding: 0px 10px;
+}
+
+.navbar{
+    height: 70px;
+}
+
+li{
+    justify-content: center;
+    margin-left: 0%;
+}
+
+.container-fluid{
+    padding: 0 !important;
+    // background-color: #171717;
+    background-image: url("/../assets/img/theme/restaurant-6.jpg");
+    image-rendering:optimizeQuality;
+    overflow: hidden;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100px;
+}
+

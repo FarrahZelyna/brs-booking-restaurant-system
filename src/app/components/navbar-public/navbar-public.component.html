@@ -1,0 +1,50 @@
+<div class="container-fluid">
+	<nav class="mt-4 navbar navbar-top navbar-expand-sm bg-transparent border-bottom" id="navbar-main">
+		<div class="container-fluid">
+
+			<div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
+				<ul class="nav navbar-nav">
+					<li class="nav-item" style="cursor: pointer;">
+						<a (click)="navigatePage('pages/landing')">
+							<img src="assets/img/logo/logo-brs-1.png" width="50" height="50" />
+						</a>
+					</li>
+					<li class="nav-item" style="cursor: pointer;">
+						<button class="btn btn-li  text-sm btn-block text-white  " routerLinkActive="active"
+							style="width: 100px; " (click)="navigatePage('home')">
+							<span class="nav-link-inner--text">HOME</span>
+					</button>
+					</li>
+					<li class="nav-item" style="cursor: pointer;">
+						<button class="btn btn-li  text-sm btn-block text-white  " routerLinkActive="active"
+							style="width: 100px; " (click)="navigatePage('home')">
+							<span class="nav-link-inner--text">DELIVERY</span>
+						</button>
+					</li>
+					<li class="nav-item" style="cursor: pointer;">
+						<button class="btn btn-li  text-sm btn-block text-white  " routerLinkActive="active"
+							style="width: 180px; " (click)="navigatePage('home')">
+							<span class="nav-link-inner--text">DINING VOUCHER</span>
+						</button>
+					</li>
+					<li class="nav-item" style="cursor: pointer;">
+						<button class="btn btn-li  text-sm btn-block text-white  " routerLinkActive="active"
+							style="width: 180px; " (click)="navigatePage('home')">
+							<span class="nav-link-inner--text">DOWNLOAD APP</span>
+						</button>
+					</li>
+					
+					<li class="nav-item" style="cursor: pointer;">
+						<button class="btn btn-login text-sm btn-block text-white  " routerLinkActive="active"
+							style="border: 1px solid white; border-radius: 0px; width: 100px; "
+							(click)="navigatePage('login')">
+							<span class="nav-link-inner--text">SIGN IN</span>
+						</button>
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+</div>

@@ -1,0 +1,243 @@
+<div class="container-fluid">
+    <div class="portal-background">
+      <div class="row">
+        <div class="col-md-12 mt-8 justify-content-center " style="padding: 0% 20%;">
+          <div class="input-group input-group-alternative ">
+            <input class="form-control" placeholder="Search restaurant" type="text" [(ngModel)]="searchKeyword"
+              [ngModelOptions]="{standalone: true}" (focus)="focusUsername = true" (blur)="focusUsername = false" />
+            <button type="button" class="btn search-btn-2 btn-block">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p>Quick Search: <span class="font-weight-bold">Western, Japanese, Dessert</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container-fluid">
+  
+    <div class="row mt-6 px-sm-8">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header-body">
+            <h4 style="padding: 20px 30px">Browse More Restaurants</h4>
+          </div>
+          <div class=" mt-0" style="padding: 0px 30px !important">
+            <table class=" table align-items-center table-flush" style="width: 90%">
+              <tbody>
+                <tr *ngFor="let row of rows | filter: searchKeyword">
+                  <td><img src="{{row.image}}" class="restaurant-image" /></td>
+                  <td>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td class="h2">{{row.name}}&nbsp;&nbsp;<img src="../assets/img/icons/common/star.png"
+                              style="width:10px; height:10px" /><span>&nbsp;{{row.rating}}</span></td>
+                        </tr>
+                        <tr>
+                          <td>A&nbsp;{{row.type}}&nbsp;restaurant,&nbsp;{{row.desc}} </td>
+                        </tr>
+                        <tr>
+                          <td>{{row.address}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width: 10%"><button *ngIf="isUser || isAdmin" type="button"
+                              class="btn btn-sm search-btn btn-block" (click)="navigatePage('login')">
+                              Login to make reservation
+                            </button>
+                            <button *ngIf="!isUser && !isAdmin" type="button"
+                              class="btn btn-sm search-btn btn-block ml-auto" (click)="reserve(row)">
+                              Make reservation
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="main-content">
+      <div class="row mt-6 px-md-8">
+        <div class="col text-center">
+          <div class="container-fluid ">
+            <ngb-carousel *ngIf="images">
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img class="image-slider" [src]="images[0]" alt="Random first slide" width="100%" height="450px">
+                </div>
+                <div class="carousel-caption">
+                  <!-- <h3>First slide label</h3> -->
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img class="image-slider" [src]="images[1]" alt="Random second slide" width="100%" height="450px">
+                </div>
+                <div class="carousel-caption">
+                  <!-- <h3>Second slide label</h3> -->
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img class="image-slider" [src]="images[2]" alt="Random third slide" width="100%" height="450px">
+                </div>
+                <div class="carousel-caption">
+                  <!-- <h3>Third slide label</h3> -->
+                </div>
+              </ng-template>
+            </ngb-carousel>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mt-6 px-sm-8">
+        <div class="col-sm-4">
+          <div class="card">
+            <!-- Card image -->
+            <img class="card-img-top" src="assets/img/default/food-1.jpg" alt="Image placeholder"
+              style="height:250px !important;">
+            <!-- Card body -->
+            <div class="card-body card-body-banner">
+              <h6 class="h3 card-title mb-0">Best Places for Steak</h6>
+              <a href="#!" class="btn btn-link px-0">Find out more</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <!-- Card image -->
+            <img class="card-img-top" src="assets/img/default/card-1.jfif" alt="Image placeholder"
+              style="height:250px !important;">
+            <!-- Card body -->
+            <div class=" card-body card-body-banner">
+              <h5 class="h3 card-title mb-0">Good for Birthday Celebration</h5>
+              <a href="#!" class="btn btn-link px-0">Find out more</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <!-- Card image -->
+            <img class="card-img-top" src="assets/img/default/card-2.jfif" alt="Image placeholder"
+              style="height:250px !important;">
+            <!-- Card body -->
+            <div class=" card-body card-body-banner">
+              <h5 class="h3 card-title mb-0">Most Unique restaurant</h5>
+              <a href="#!" class="btn btn-link px-0">Find out more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header bg-secondary">
+          <h4 class="modal-title text-dark my-auto">Book Restaurant : {{res_name}}</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+            <div class="input-form mb-4">
+              <label class="form-control-label">
+                Full Name
+              </label>
+              <input class="form-control"
+                style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;"
+                placeholder="Enter full name" type="text" [(ngModel)]="userForm.username"
+                [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="input-form mb-4">
+              <label class="form-control-label">
+                Phone Number
+              </label>
+              <input class="form-control"
+                style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;"
+                placeholder="Enter phone number" type="text" [(ngModel)]="userForm.contact_no"
+                [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="input-form mb-4">
+              <label class="form-control-label">
+                Email Address
+              </label>
+              <input class="form-control"
+                style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;"
+                placeholder="Enter a valid email address" type="text" [(ngModel)]="userForm.email"
+                [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="input-form mb-4">
+              <label class="form-control-label">
+                Choose Date
+              </label>
+              <input type="text" class="form-control" style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;" #dp="bsDatepicker"
+              placeholder="Choose date" bsDatepicker [(ngModel)]="userForm.date">
+            </div>
+            <div class="input-form mb-4">
+              <label class="form-control-label">
+                Choose a Time Slot for Booking
+              </label>
+              <select class="form-control" id="time" [(ngModel)]="userForm.session"
+              [ngModelOptions]="{standalone: true}" style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;">
+                <option hidden selected>Select Time Slot</option>
+                <option value=1>Breakfast and Lunch(11AM-3PM)</option>
+                <option value=2>Dinner(6PM-10PM)</option>
+              </select>
+            </div>
+            <div class="input-form mb-4" *ngIf="userForm.session == 1">
+              <label class="form-control-label">
+                Select Time for Booking
+              </label>
+              <select class="form-control" id="time" [(ngModel)]="userForm.time"
+              [ngModelOptions]="{standalone: true}" style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;">
+                <option hidden selected>Select Time</option>
+                <option value=11>11AM</option>
+                <option value=12>12PM</option>
+                <option value=13>1PM</option>
+                <option value=14>2PM</option>
+                <option value=15>3PM</option>
+              </select>
+            </div>   
+            <div class="input-form mb-4" *ngIf="userForm.session == 2">
+              <label class="form-control-label">
+                Select Time for Booking
+              </label>
+              <select class="form-control" id="time" [(ngModel)]="userForm.time"
+              [ngModelOptions]="{standalone: true}" style="border:none !important; border-bottom: 1px solid #6373839d !important; border-radius: 0px;">
+                <option hidden selected>Select Time</option>
+                <option value=18>6PM</option>
+                <option value=19>7PM</option>
+                <option value=20>8PM</option>
+                <option value=21>9PM</option>
+                <option value=22>10PM</option>
+              </select>
+            </div>
+          </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="row-xl-12 modal-footer">
+          <button class="btn btn-sm btn-outline-danger " data-dismiss="modal" type="button" (click)="hide()">
+            Close
+          </button>
+          <button class="btn btn-sm search-btn btn-block ml-auto" type="button" (click)="onSubmit()">
+            Reserve now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

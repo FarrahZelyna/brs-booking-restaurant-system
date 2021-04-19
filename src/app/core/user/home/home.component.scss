@@ -1,0 +1,70 @@
+.card-body-banner {
+    border-radius: 10px;
+    height: 100px !important;
+}
+
+.card-image-top{
+    image-rendering:optimizeQuality;
+}
+
+.image-slider {
+    width: 100%;
+    justify-content: center;
+    border-color: transparent !important;
+}
+
+.container-fluid {
+    padding: 0 !important;
+}
+
+.portal-background {
+    background-image: url("/../assets/img/theme/restaurant-6.jpg");
+    image-rendering:optimizeQuality;
+    overflow: hidden;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 350px;
+}
+
+// .main-content {
+//     background-color: white;
+// }
+
+.search-btn {
+    transition: 0.5s;
+    color: white;
+    border-radius: 5px;
+    background-color: #ca162c;
+    border-left: none !important;
+    width: 150px;
+}
+
+.search-btn-2 {
+    transition: 0.5s;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+    background-color: #ca162c;
+    border-left: none !important;
+    width: 50px;
+}
+
+.restaurant-image{
+    width: 300px !important;
+    height: 200px !important;
+}
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 500px;
+    position: relative;
+    overflow-y: auto !important;
+}
+
